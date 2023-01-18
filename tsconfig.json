@@ -13,7 +13,7 @@
     "sourceMap": true,
     "module": "ES2022",
     "allowJs": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   },
   "ts-node": {
     "esm": true,

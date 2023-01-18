@@ -5,8 +5,10 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "start": "npm run lint && cross-env NODE_ENV=development nodemon --watch src/**/*.ts -L --exec ts-node --experimentalSpecifierResolution node src/index.ts",
-    "lint": "eslint . --fix"
+    "start:front": "node ./index.js",
+    "start:server:dev": "npm run lint:server && cross-env NODE_ENV=development nodemon ",
+    "start:server:prod": "npm run lint:server && cross-env NODE_ENV=production tsc && node --experimental-specifier-resolution=node dist/src/websocket_server/index.js",
+    "lint:server": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
     "@nut-tree/nut-js": "^2.3.0",
     "@types/ws": "^8.5.4",
     "dotenv": "^16.0.3",
+    "jimp": "^0.16.2",
     "ws": "^8.12.0"
   }
 }

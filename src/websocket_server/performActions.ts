@@ -1,9 +1,9 @@
 import { mouse, left, right, up, down, FileType } from '@nut-tree/nut-js';
 import { drawCircle, drawRectangle, drawSquare } from './draw';
 import { screen, Region } from '@nut-tree/nut-js';
-import * as fs from 'node:fs/promises';
 import { logCurrentServerStatus } from './logger';
 import { ServerStatus } from './types';
+import Jimp from 'jimp';
 
 export async function processMouseMove(cmd: string, args: string[]) {
   try {
@@ -55,14 +55,12 @@ export async function makePrintScreen() {
   try {
     const { x, y } = await mouse.getPosition();
     const screenRegion = new Region(x, y, 200, 200);
-    const picture = await screen.captureRegion(
-      'picture',
-      screenRegion,
-      FileType.PNG
-    );
-    const contents = await fs.readFile(picture, { encoding: 'base64' });
-    await fs.unlink('./picture.png');
-    return `prnt_scrn ${contents}`;
+    const picture = await screen.grabRegion(screenRegion);
+    const invertedImage = await picture.toRGB();
+    const image = new Jimp(invertedImage);
+    const base64data = await image.getBase64Async(Jimp.MIME_PNG);
+    const prefix = 'data:image/png;base64,';
+    return `prnt_scrn ${base64data.slice(prefix.length)}`;
   } catch (error) {
     logCurrentServerStatus(ServerStatus.ERROR, { error });
   }

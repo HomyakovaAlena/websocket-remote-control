@@ -22,7 +22,13 @@ export function logCurrentServerStatus(
       break;
 
     case ServerStatus.RESPONSE:
-      console.log(`Server answered to Client (id=${String(payload.id)})`);
+      const response =
+        payload.response ?? `action ${String(payload.data)} performed`;
+      console.log(
+        `Server answered to Client (id=${String(
+          payload.id
+        )}), response: ${String(response)}`
+      );
       break;
 
     case ServerStatus.CLOSE:

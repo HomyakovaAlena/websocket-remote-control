@@ -16,9 +16,11 @@ wss.on(ServerStatus.CONNECTION, (wsClient, req) => {
   wsClient.on(ServerStatus.MESSAGE, async (data: RawData) => {
     logCurrentServerStatus(ServerStatus.MESSAGE, { id, data });
 
+    const readable = 
+
     const response = await processCommand(data);
     if (response) wsClient.send(response);
-    logCurrentServerStatus(ServerStatus.RESPONSE, { id });
+    logCurrentServerStatus(ServerStatus.RESPONSE, { id, response, data });
   });
 
   wsClient.on(ServerStatus.CLOSE, (code) => {

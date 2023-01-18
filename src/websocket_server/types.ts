@@ -6,6 +6,7 @@ export interface LoggerPayload {
   data?: RawData;
   code?: number;
   error?: Error | unknown;
+  response?: string | undefined;
 }
 
 export enum ServerStatus {
