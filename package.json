@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start:front": "node ./index.js",
-    "start:server:dev": "npm run lint:server && cross-env NODE_ENV=development nodemon ",
+    "start:server:dev": "npm run lint:server && cross-env NODE_ENV=development nodemon",
     "start:server:prod": "npm run lint:server && cross-env NODE_ENV=production tsc && node --experimental-specifier-resolution=node dist/src/websocket_server/index.js",
     "lint:server": "eslint . --fix"
   },
