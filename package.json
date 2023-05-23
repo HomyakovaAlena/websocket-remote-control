@@ -1,0 +1,46 @@
+{
+  "name": "websocket-remote-control",
+  "version": "1.0.0",
+  "description": "Remote control backend using nutjs.dev library and Websocket",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "start:front": "node ./index.js",
+    "start:server:dev": "npm run lint:server && cross-env NODE_ENV=development nodemon",
+    "start:server:prod": "npm run lint:server && cross-env NODE_ENV=production tsc && node --experimental-specifier-resolution=node dist/src/websocket_server/index.js",
+    "lint:server": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HomyakovaAlena/websocket-remote-control.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HomyakovaAlena/websocket-remote-control/issues"
+  },
+  "homepage": "https://github.com/HomyakovaAlena/websocket-remote-control#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@nut-tree/nut-js": "^2.3.0",
+    "@types/ws": "^8.5.4",
+    "dotenv": "^16.0.3",
+    "jimp": "^0.16.2",
+    "ws": "^8.12.0"
+  }
+}
